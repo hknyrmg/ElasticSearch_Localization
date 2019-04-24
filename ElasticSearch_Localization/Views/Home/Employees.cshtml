@@ -1,0 +1,33 @@
+﻿@model EmployeeSearchResponse
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+<div class="container">
+    <h3>@Localizer["Toplam {0} çalışan bulundu.", Model.Total]</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>@Localizer["İsim"]</th>
+                <th>@Localizer["Ünvan"]</th>
+                <th>@Localizer["Cv Skor"]</th>
+                <th>@Localizer["İşe Başlama Tarihi"]</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in Model.Employees.OrderBy(x=> x.resumeScore))
+            {
+            <tr>
+                <td>@employee.employeeId</td>
+                <td>@employee.Name</td>
+                <td>@employee.jobTitle</td>
+                <td>@employee.resumeScore</td>
+                <td>@employee.dateofStart</td>
+
+
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
